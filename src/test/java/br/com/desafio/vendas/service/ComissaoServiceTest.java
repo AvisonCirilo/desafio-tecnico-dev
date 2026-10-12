@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -82,6 +84,29 @@ class ComissaoServiceTest {
         assertBigDecimalEquals(
                 "25.00",
                 resultado
+        );
+    }
+
+    @Test
+    void deveSomarComissoesDoMesmoVendedor() {
+
+        List<Venda> vendas = List.of(
+                new Venda(
+                        "João",
+                        new BigDecimal("100.00")
+                ),
+                new Venda(
+                        "João",
+                        new BigDecimal("500.00")
+                )
+        );
+
+        Map<String, BigDecimal> resultado =
+                service.calcularComissoesPorVendedor(vendas);
+
+        assertBigDecimalEquals(
+                "26.00",
+                resultado.get("João")
         );
     }
 
