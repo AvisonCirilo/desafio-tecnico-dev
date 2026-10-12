@@ -244,10 +244,14 @@ src/
     └── java/
         └── br/com/desafio/
             ├── vendas/
+            │   ├── io/
+            │   │   └── VendasJsonReaderTest.java
             │   └── service/
             │       └── ComissaoServiceTest.java
             │
             ├── estoque/
+            │   ├── io/
+            │   │   └── EstoqueJsonReaderTest.java
             │   └── service/
             │       └── EstoqueServiceTest.java
             │
@@ -324,6 +328,8 @@ mvn test
 
 Os testes verificam cenários importantes das regras de negócio.
 
+Também existem testes de leitura dos arquivos JSON, garantindo que os dados de vendas e estoque sejam carregados corretamente através do Jackson.
+
 ## Comissão
 
 São verificados principalmente os limites das faixas:
@@ -335,6 +341,8 @@ R$ 499,99 → 1%
 R$ 500,00 → 5%
 ```
 
+Também é verificado o agrupamento das comissões por vendedor.
+
 Esses casos foram escolhidos por representarem os pontos de transição das regras de comissão.
 
 ## Estoque
@@ -345,7 +353,12 @@ São testados cenários como:
 - saída de produtos;
 - geração do identificador da movimentação;
 - tentativa de saída maior que o estoque disponível;
-- movimentação com quantidade zero.
+- movimentação com quantidade zero;
+- leitura dos produtos a partir do arquivo `estoque.json`.
+
+## Vendas
+
+Também é verificada a leitura das vendas a partir do arquivo `vendas.json`.
 
 ## Juros
 

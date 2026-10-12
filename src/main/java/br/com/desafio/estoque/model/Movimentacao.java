@@ -8,6 +8,7 @@ public class Movimentacao {
     private final Produto produto;
     private final TipoMovimentacao tipo;
     private final int quantidade;
+    private final int estoqueFinal;
 
     public Movimentacao(
             Produto produto,
@@ -18,6 +19,7 @@ public class Movimentacao {
         this.produto = produto;
         this.tipo = tipo;
         this.quantidade = quantidade;
+        this.estoqueFinal = produto.getEstoque();
     }
 
     public UUID getId() {
@@ -34,6 +36,10 @@ public class Movimentacao {
 
     public int getQuantidade() {
         return quantidade;
+    }
+
+    public int getEstoqueFinal() {
+        return estoqueFinal;
     }
 
     public String getDescricao() {

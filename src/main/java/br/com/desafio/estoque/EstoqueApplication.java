@@ -171,7 +171,7 @@ public class EstoqueApplication {
 
             System.out.println(
                     "Estoque final: "
-                            + produto.getEstoque()
+                            + movimentacao.getEstoqueFinal()
             );
 
         } catch (IllegalArgumentException e) {

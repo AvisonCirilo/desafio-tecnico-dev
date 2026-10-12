@@ -40,6 +40,11 @@ class EstoqueServiceTest {
                 produto.getEstoque()
         );
 
+        assertEquals(
+                200,
+                movimentacao.getEstoqueFinal()
+        );
+
         assertNotNull(
                 movimentacao.getId()
         );
@@ -53,15 +58,21 @@ class EstoqueServiceTest {
     @Test
     void deveRetirarProdutoDoEstoque() {
 
-        service.movimentarEstoque(
-                produto,
-                TipoMovimentacao.SAIDA,
-                50
-        );
+        Movimentacao movimentacao =
+                service.movimentarEstoque(
+                        produto,
+                        TipoMovimentacao.SAIDA,
+                        50
+                );
 
         assertEquals(
                 100,
                 produto.getEstoque()
+        );
+
+        assertEquals(
+                100,
+                movimentacao.getEstoqueFinal()
         );
     }
 
