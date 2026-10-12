@@ -1,6 +1,7 @@
 package br.com.desafio.juros.service;
 
 import java.math.BigDecimal;
+import java.time.Clock;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -9,6 +10,16 @@ public class JurosService {
     private static final BigDecimal TAXA_DIARIA =
             new BigDecimal("0.025");
 
+    private final Clock clock;
+
+    public JurosService() {
+        this(Clock.systemDefaultZone());
+    }
+
+    public JurosService(Clock clock) {
+        this.clock = clock;
+    }
+
     public BigDecimal calcularJuros(
             BigDecimal valor,
             LocalDate dataVencimento
@@ -16,7 +27,7 @@ public class JurosService {
 
         validarDados(valor, dataVencimento);
 
-        LocalDate hoje = LocalDate.now();
+        LocalDate hoje = LocalDate.now(clock);
 
         long diasAtraso =
                 ChronoUnit.DAYS.between(
@@ -37,7 +48,7 @@ public class JurosService {
             LocalDate dataVencimento
     ) {
 
-        LocalDate hoje = LocalDate.now();
+        LocalDate hoje = LocalDate.now(clock);
 
         long dias =
                 ChronoUnit.DAYS.between(
